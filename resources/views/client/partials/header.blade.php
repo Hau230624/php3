@@ -11,6 +11,14 @@
           <li><a href="/">Trang Chủ</a></li>
           <li><a href="#">Về Chúng Tôi</a></li>
           <li><a href="#">Liên Hệ</a></li>
+          @if(Auth::check())
+                <form action="{{ route('LogOut') }}" method="post"> @CSRF
+                  <input type="submit" class="btn btn-primary" value="Logout">
+                </form>
+
+            @else
+                <li><a href="{{ route('Login') }}">Login</a></li>
+            @endif
         </ul>
       </div>
       <div class="social_plus_search floatright">

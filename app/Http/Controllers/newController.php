@@ -10,7 +10,10 @@ class newController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function Admin(){
+        return view('admin.dashboard');
+    }
+     public function index()
     {
         
         $data = DB::table('news')->where('cate_id',1)->limit(3)->get();

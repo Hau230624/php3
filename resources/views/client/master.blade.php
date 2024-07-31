@@ -4,12 +4,17 @@
 </head>
 
 <body>
+  @if(session('error'))
+  <div class="alert alert-danger">
+    {{ session('error') }}
+  </div>
+  @endif
   @php
   $data = DB::table('categories')->limit(10)->get();
   @endphp
   <div class="body_wrapper">
     <div class="center">
-      
+
       @include('client.partials.header')
 
 
