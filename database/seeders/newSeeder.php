@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\newsModel;
+use App\Models\News;
 use Illuminate\Database\Seeder;
 use Faker\Factory as Faker;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -33,7 +33,7 @@ class newSeeder extends Seeder
         ];
 
         for ($i = 0; $i < 10; $i++) {
-            newsModel::create([
+            News::create([
                 'cate_id' => rand(1,5),
                 'img' => 'single_featured.png', 
                 'title' => fake()->randomElement($titles),
