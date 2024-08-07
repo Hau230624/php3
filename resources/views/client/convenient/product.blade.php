@@ -6,7 +6,7 @@
     }
 </style>
     <div class="single_left_coloum floatleft">
-        <img class="anh1" src="/client/images/{{$img}}" alt="" />
+        <img class="anh1" src="{{ \Storage::url($img) }}" alt="" />
         <h3>{{$title}}</h3>
         <p>{{$content}}.</p>
         <a class="readmore" href="http://php3asm.test/show/{{$id}}">read more</a>

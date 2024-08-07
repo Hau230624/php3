@@ -35,7 +35,7 @@ class newSeeder extends Seeder
         for ($i = 0; $i < 10; $i++) {
             News::create([
                 'cate_id' => rand(1,5),
-                'img' => 'single_featured.png', 
+                'img' => 'products/WZquvLPsyDAqrfhb644ybPxrX0EhYdqN8pKNSTX8.jpg', 
                 'title' => fake()->randomElement($titles),
                 'content' => fake()->randomElement($contents),
                 'author' => $faker->name

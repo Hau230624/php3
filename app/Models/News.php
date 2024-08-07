@@ -16,4 +16,8 @@ class News extends Model
         'content',
         'author'
     ];
+
+    public function Category(){
+        return $this->belongsTo(Category::class);
+    }
 }

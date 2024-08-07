@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -12,8 +13,8 @@ class categoryController extends Controller
      */
     public function index()
     {
-        $data = DB::table('categories')->limit(9)->get();
-        // return view('client.master',compact('data'));
+        $cate = Category::all();
+        return view('admin.list_cate',compact('cate'));
     }
 
     /**
@@ -21,7 +22,7 @@ class categoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.create_cate');
     }
 
     /**
@@ -29,7 +30,11 @@ class categoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $cate =[
+            'name_cate'=>$request->name_cate
+        ];
+        Category::create($cate);
+        return redirect()->route('list_cate');
     }
 
     /**
@@ -37,7 +42,7 @@ class categoryController extends Controller
      */
     public function show(string $id)
     {
-        //
+        
     }
 
     /**
@@ -45,7 +50,8 @@ class categoryController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $news = Category::findOrFail($id);
+        return view('admin.edit_cate',compact('news'));
     }
 
     /**
@@ -53,7 +59,16 @@ class categoryController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $news = Category::findOrFail($id); 
+        if (!$news) {
+            return back()->with('error', 'Không tìm thấy bản ghi.');
+        }
+        $news->update([
+            'name_cate' => $request->name_cate,
+        ]);
+        // dd($request);
+
+        return redirect()->route('list_cate')->with('success', 'Cập nhật thành công!');
     }
 
     /**
@@ -61,6 +76,7 @@ class categoryController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        Category::destroy($id);
+        return redirect('admin/list_cate');
     }
 }

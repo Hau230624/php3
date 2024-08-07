@@ -14,7 +14,7 @@ class Category extends Model
         'name_cate'
     ];
 
-    public function new(){
+    public function News(){
         return $this->hasMany(News::class);
     }
 }

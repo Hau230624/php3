@@ -17,7 +17,7 @@ class AuthController extends Controller
     {
         $data = $request->validate([
             'name' => ['required',],
-            'email' => ['required','email','unique:users'],
+            'email' => ['required', 'email', 'unique:users'],
             'password' => ['required'],
         ]);
         $user = User::create([
@@ -39,18 +39,18 @@ class AuthController extends Controller
             'email' => ['required', 'email'],
             'password' => ['required'],
         ]);
-        if(Auth::attempt($credentials)){
+        if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            
+
             $user = Auth::user();
 
 
-                if ($user->role == 1) {
-                    return redirect('admin');
-                } else {
-                    return redirect('/');
-                }
-                }
+            if ($user->role == 1) {
+                return redirect('admin/list');
+            } else {
+                return redirect('/');
+            }
+        }
         return back()->onlyInput('email');
     }
     public function LogOut()
@@ -59,5 +59,4 @@ class AuthController extends Controller
         \request()->session()->invalidate();
         return redirect('/');
     }
-
 }
